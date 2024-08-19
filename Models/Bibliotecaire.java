@@ -1,4 +1,6 @@
-public class Bibliotecaire extends Personne{
+package Models;
+
+public class Bibliotecaire extends Personne {
     private String identifiant;
     private static int compteur = 0;
 

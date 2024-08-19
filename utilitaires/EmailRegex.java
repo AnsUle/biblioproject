@@ -1,9 +1,11 @@
+package utilitaires;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmailRegex {
     // la regex pour valider l'email
-    private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\\\.[A-Za-z]{2,}$";
 
     //La methode de validation
     public static boolean isValidEmail(String email) {
