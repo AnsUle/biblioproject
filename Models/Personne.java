@@ -10,6 +10,7 @@ public class Personne {
 
     protected static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
     protected static final String TELEPHONE_REGEX = "^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]?\\d{2}){4}$";
+    protected static final String NAME_REGEX = "^[a-zA-Z]\\w*$";
 
     public Personne(String nom, String prenom, String telephone, String email) {
         this.nom = validateNom(nom);
@@ -68,21 +69,21 @@ public class Personne {
     }
 
     private String validateNom(String nom) {
-        if (nom == null || nom.trim().isEmpty()) {
-            throw new IllegalArgumentException("Le nom ne peut pas être vide.");
+        if (nom == null || !Pattern.matches(NAME_REGEX, nom)) {
+            throw new IllegalArgumentException("nom invalide. Merci de fournir un nom valide.");
         }
         return nom;
     }
 
     private String validatePrenom(String prenom) {
-        if (prenom == null || prenom.trim().isEmpty()) {
-            throw new IllegalArgumentException("Le prénom ne peut pas être vide.");
+        if (prenom == null ||!Pattern.matches(NAME_REGEX, prenom)) {
+            throw new IllegalArgumentException(" prénom invalide. Merci de fournir un prenom valide.");
         }
         return prenom;
     }
 
     @Override
     public String toString() {
-        return "Nom: " + nom + "\nPrénom: " + prenom + "\nEmail: " + email + "\nTéléphone: " + telephone;
+        return "\nNom:\n" + nom + "\nPrénom:\n" + prenom + "\nEmail:\n" + email + "\nTéléphone:\n" + telephone;
     }
 }

@@ -2,6 +2,7 @@ package Models;
 
 import utilitaires.Saisie;
 
+import javax.swing.*;
 import java.util.*;
 
 
@@ -32,16 +33,16 @@ public class Bibliotheque {
         this.saisie = new Saisie();
     }*/
 
-    public static void ajouterAbonne() {
-        Abonne abonne = Saisie.lireAbonne();
+    public static void ajouterAbonne(JFrame frame, Abonne abonne) {
+        //Abonne abonne = Saisie.lireAbonne();
         abonnes.add(abonne);
-        Saisie.messageInfos("Abonné ajouté :", 0);
+        //Saisie.messageInfos(frame,"Abonné ajouté :", 0);
     }
 
-    public static void ajouterLivre() {
-        Livre livre = Saisie.lireLivre();
+    public static void ajouterLivre(JFrame frame, Livre livre) {
+        //Livre livre = Saisie.lireLivre();
         livres.add(livre);
-        Saisie.messageInfos("Livre ajouté : ", 1);
+        //Saisie.messageInfos(frame,"Livre ajouté : ", 1);
     }
 
     public static void emprunterLivre() {
@@ -78,7 +79,7 @@ public class Bibliotheque {
             Abonne abonne = trouverAbonneParId(abonneId);
             System.out.println("Le livre " + livre.toString() + "a été retourné par " + abonne.toString());
         }*/
-        Saisie.lireRetour();
+        Saisie.lireRetour("",null);
     }
 
     public static void afficherAbonnes() {

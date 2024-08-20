@@ -5,7 +5,12 @@ import Models.Bibliotheque;
 import Models.Livre;
 import Models.Materiel;
 
+import javax.swing.*;
+import javax.swing.text.View;
 import java.util.Scanner;
+import Views.RetournerLivre;
+
+import static java.awt.AWTEventMulticaster.add;
 
 public class Saisie {
 
@@ -71,15 +76,17 @@ public class Saisie {
             Bibliotheque.getPrets().put(idLivre, idAbonne);
             System.out.println("Le livre " + livre.toString() + " a été emprunté par " + abonne.toString());
         }
+
     }
-    public static void lireRetour() {
-        Scanner scanner = new Scanner(System.in);
+    public static void lireRetour(String idLivre, JTextArea resultArea) {
+        //String idLivre = Bibliotheque.getLivres().getLast().getIdLivrefield
+        /*Scanner scanner = new Scanner(System.in);
         System.out.println("Merci de saisir l'ID du livre :");
-        String idLivre = scanner.nextLine();
+        String idLivre = scanner.nextLine();*/
 
         // Vérifie si le livre est emprunté
         if (!Bibliotheque.getPrets().containsKey(idLivre)) {
-            System.out.println("Le livre avec l'ID " + idLivre + " n'est pas actuellement emprunté.");
+            resultArea.setText("Le livre avec l'ID " + idLivre + " n'est pas actuellement emprunté.");
             return;
         }
 
@@ -92,31 +99,33 @@ public class Saisie {
 
         // Vérifie si le livre existe
         if (livre == null) {
-            System.out.println("Le livre avec l'ID " + idLivre + " n'existe pas dans la bibliothèque.");
+            resultArea.setText("Le livre avec l'ID " + idLivre + " n'existe pas dans la bibliothèque.");
             return;
         }
 
         // Vérifie si l'abonné existe
         if (abonne == null) {
-            System.out.println("L'abonné avec l'ID " + abonneId + " n'existe pas dans la bibliothèque.");
+            resultArea.setText("L'abonné avec l'ID " + abonneId + " n'existe pas dans la bibliothèque.");
             return;
         }
 
         // Marque le livre comme disponible
         livre.setDisponible(true);
 
-        System.out.println("Le livre \"" + livre.getTitre() + "\" a été retourné par " + abonne.getPrenom() + " " + abonne.getNom() + ".");
+        resultArea.setText("Le livre \"" + livre.getTitre() + "\" a été retourné par " + abonne.getPrenom() + " " + abonne.getNom() + ".");
     }
 
 
-    public static void messageInfos(String message, int type) {
+    public static void messageInfos(JFrame frame, String message, int type) {
 
         switch (type) {
             case 0:
-                System.out.println(message + Bibliotheque.getAbonnes().getLast().toString());
+                //System.out.println(message + Bibliotheque.getAbonnes().getLast().toString());
+                JOptionPane.showMessageDialog(frame, (message + Bibliotheque.getAbonnes().getLast().toString()));
                 break;
             case 1:
-                System.out.println(message + Bibliotheque.getLivres().getLast().toString());
+                //System.out.println(message + Bibliotheque.getLivres().getLast().toString());
+                JOptionPane.showMessageDialog(frame, (message + Bibliotheque.getLivres().getLast().toString()));
                 break;
             default:
                 break;

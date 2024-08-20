@@ -21,10 +21,10 @@ public class MenuFrame {
 
             switch (choix) {
                 case 1:
-                    Bibliotheque.ajouterAbonne();
+                    Bibliotheque.ajouterAbonne(null, null);
                     break;
                 case 2:
-                    Bibliotheque.ajouterLivre();
+                    Bibliotheque.ajouterLivre(null,null);
                     break;
                 case 3:
                     Bibliotheque.emprunterLivre();

@@ -33,6 +33,6 @@ public class Abonne extends Personne {
     //affichage
     @Override
     public String toString() {
-        return "\nABONNE"+ "\nID ABONNEE\n"+ idAbonne + super.toString() + "\nDATE INSCRPTION\n" + dateInscription;
+        return "\nID ABONNEE\n"+ idAbonne + super.toString() + "\nDate Inscription\n" + dateInscription;
     }
 }
