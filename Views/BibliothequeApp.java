@@ -22,7 +22,7 @@ public class BibliothequeApp extends JFrame {
     private JTable livreTable;
 
     public BibliothequeApp() {
-        setTitle("Gestion Base de donnee");
+        setTitle("Gestion Base de Donnee");
         setSize(1100, 1000);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -53,7 +53,7 @@ public class BibliothequeApp extends JFrame {
         // Panneau des prêts
         JPanel pretPanel = new JPanel(new BorderLayout());
         pretPanel.setBorder(BorderFactory.createTitledBorder("Liste des Prêts"));
-
+        pretPanel.setSize(500,600);
         searchPretField = new JTextField(20);
         JButton searchPretButton = new JButton("Rechercher Prêt");
 
@@ -90,7 +90,7 @@ public class BibliothequeApp extends JFrame {
         JPanel leftPanel = new JPanel(new BorderLayout());
         leftPanel.add(abonnePanel, BorderLayout.SOUTH);
         leftPanel.add(pretPanel, BorderLayout.NORTH);
-        leftPanel.setPreferredSize(new Dimension(500, 600));
+        leftPanel.setPreferredSize(new Dimension(1000, 1200));
 
         // Split Pane pour séparer gauche (abonnés/prêts) et droite (livres)
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel, livrePanel);
@@ -141,7 +141,7 @@ public class BibliothequeApp extends JFrame {
             }
         });
     }
-
+//
     private void populateAbonneTable(List<Abonne> abonnes) {
         String[] columnNames = {"Nom", "Email","Telephone", "ID"};
         String[][] data = new String[abonnes.size()][4];

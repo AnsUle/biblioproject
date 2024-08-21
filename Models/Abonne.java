@@ -20,7 +20,7 @@ public class Abonne extends Personne {
     //Methode pour generer automatiquement id de l abonne
     private static String genererIdAbonne() {
         compteur++;
-        return "ABN " + String.format("%05d", compteur);
+        return "ABN" + String.format("%05d", compteur);
     }
     // mise en place des setter et getter
     public String getIdAbonne() {
@@ -33,6 +33,6 @@ public class Abonne extends Personne {
     //affichage
     @Override
     public String toString() {
-        return "\nID ABONNEE\n"+ idAbonne + super.toString() + "\nDate Inscription\n" + dateInscription;
+        return "\nID\n"+ idAbonne + super.toString() + "\nDate Inscription\n" + dateInscription;
     }
 }

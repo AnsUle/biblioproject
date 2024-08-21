@@ -1,5 +1,7 @@
 package Models;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 public class Personne {
@@ -11,6 +13,7 @@ public class Personne {
     protected static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
     protected static final String TELEPHONE_REGEX = "^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]?\\d{2}){4}$";
     protected static final String NAME_REGEX = "^[a-zA-Z]\\w*$";
+    protected Logger logger = Logger.getLogger(this.getClass().getName());
 
     public Personne(String nom, String prenom, String telephone, String email) {
         this.nom = validateNom(nom);
@@ -62,22 +65,44 @@ public class Personne {
     }
 
     private String validateTelephone(String telephone) {
-        if (telephone == null || !Pattern.matches(TELEPHONE_REGEX, telephone)) {
+        if (telephone == null){
+            //capture l'erreur dans les logs sans lancer une exception
+            logger.log(Level.SEVERE, "Erreur : Telphone est null");
+        return null;
+    }
+        if (nom.trim().isEmpty()){
+            throw new IllegalArgumentException("Nom ne peut pas etre vide");
+        }
+        if (!Pattern.matches(TELEPHONE_REGEX, telephone)) {
             throw new IllegalArgumentException("Numéro de téléphone invalide. Merci de fournir un numéro valide.");
         }
         return telephone;
     }
 
     private String validateNom(String nom) {
-        if (nom == null || !Pattern.matches(NAME_REGEX, nom)) {
+        if (nom == null ){
+            logger.log(Level.SEVERE, "Erreur : le nom est null");
+            return null;
+        }
+        if (nom.trim().isEmpty()){
+            throw new IllegalArgumentException("Nom ne peut pas etre vide");
+        }
+        if (!Pattern.matches(NAME_REGEX, nom)) {
             throw new IllegalArgumentException("nom invalide. Merci de fournir un nom valide.");
         }
         return nom;
     }
 
     private String validatePrenom(String prenom) {
-        if (prenom == null ||!Pattern.matches(NAME_REGEX, prenom)) {
-            throw new IllegalArgumentException(" prénom invalide. Merci de fournir un prenom valide.");
+        if (prenom == null){
+            logger.log(Level.SEVERE, "Erreur : le prenom est null");
+            return null;
+        }
+        if (prenom.trim().isEmpty()){
+            throw new IllegalArgumentException("Prenom ne peut pas etre vide");
+        }
+        if (!Pattern.matches(NAME_REGEX, prenom)) {
+            throw new IllegalArgumentException(" Prénom invalide. Merci de fournir un prenom valide.");
         }
         return prenom;
     }
