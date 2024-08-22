@@ -13,7 +13,7 @@ public class Abonne extends Personne {
     //constructeur
     public Abonne(String nom, String prenom, String telephone,String email) {
         super(nom, prenom, telephone, email);
-        this.idAbonne = genererIdAbonne();
+        this.idAbonne = genererIdAbonne().toUpperCase();
         this.dateInscription = LocalDate.now().format(DATE_FORMATTER);
     }
 

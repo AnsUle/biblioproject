@@ -16,10 +16,10 @@ public class Personne {
     protected Logger logger = Logger.getLogger(this.getClass().getName());
 
     public Personne(String nom, String prenom, String telephone, String email) {
-        this.nom = validateNom(nom);
-        this.prenom = validatePrenom(prenom);
-        this.telephone = validateTelephone(telephone);
-        this.email = validateEmail(email);
+        this.nom = validateNom(nom.trim());
+        this.prenom = validatePrenom(prenom.trim());
+        this.telephone = validateTelephone(telephone.trim());
+        this.email = validateEmail(email.trim());
     }
 
     // Getters

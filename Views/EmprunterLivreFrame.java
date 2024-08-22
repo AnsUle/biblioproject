@@ -73,7 +73,7 @@ public class EmprunterLivreFrame extends JFrame {
 
     private void creerPret() {
         String idLivre = idLivreField.getText();
-        String idAbonne = idAbonneField.getText();
+        String idAbonne = "ABN"+idAbonneField.getText();
 
         Livre livre = Bibliotheque.trouverLivreParId(idLivre);
         Abonne abonne = Bibliotheque.trouverAbonneParId(idAbonne);
@@ -90,7 +90,17 @@ public class EmprunterLivreFrame extends JFrame {
             dateRetourField.setText(pret.getDateRetour().toString());
             enCoursCheckBox.setSelected(pret.getEnCours());
             JOptionPane.showMessageDialog(this, "Le livre " + livre.toString() + " a été emprunté par " + abonne.toString());
+
+            //reinitialisé la saise
+            resetForm();
         }
+    }
+    private void resetForm() {
+        idLivreField.setText("");
+        enCoursCheckBox.setSelected(false);
+        datePretField.setText("");
+        dateRetourField.setText("");
+        idAbonneField.setText("");
     }
 
 }

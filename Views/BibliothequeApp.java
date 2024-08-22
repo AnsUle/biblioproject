@@ -23,8 +23,9 @@ public class BibliothequeApp extends JFrame {
 
     public BibliothequeApp() {
         setTitle("Gestion Base de Donnee");
-        setSize(1100, 1000);
+        setSize(1200, 900);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         initUI();
     }
@@ -90,11 +91,12 @@ public class BibliothequeApp extends JFrame {
         JPanel leftPanel = new JPanel(new BorderLayout());
         leftPanel.add(abonnePanel, BorderLayout.SOUTH);
         leftPanel.add(pretPanel, BorderLayout.NORTH);
-        leftPanel.setPreferredSize(new Dimension(1000, 1200));
+        //leftPanel.setPreferredSize(new Dimension(1000, 1200));
 
         // Split Pane pour séparer gauche (abonnés/prêts) et droite (livres)
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel, livrePanel);
-        splitPane.setDividerLocation(500);
+        splitPane.setDividerLocation(600);
+        splitPane.setEnabled(false);
 
         mainPanel.add(splitPane, BorderLayout.CENTER);
 
