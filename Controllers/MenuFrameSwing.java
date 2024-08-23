@@ -1,6 +1,7 @@
-package Views;
+package Controllers;
 
 import Models.*;
+import Views.*;
 
 import javax.swing.*;
 import java.awt.*;
