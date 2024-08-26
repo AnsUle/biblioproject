@@ -50,7 +50,8 @@ public class BibliothequeApp extends JFrame {
 
         abonnePanel.add(abonneSearchPanel, BorderLayout.NORTH);
         abonnePanel.add(abonneScrollPane, BorderLayout.CENTER);
-//ajout bouton de supp
+//ajout bouton de suppression
+
         JPanel abonneButtonPanel = new JPanel();
         JButton deleteAbonneButton = new JButton("Supprimer Abonné");
         abonneButtonPanel.add(deleteAbonneButton);
