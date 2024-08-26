@@ -50,6 +50,11 @@ public class BibliothequeApp extends JFrame {
 
         abonnePanel.add(abonneSearchPanel, BorderLayout.NORTH);
         abonnePanel.add(abonneScrollPane, BorderLayout.CENTER);
+//ajout bouton de supp
+        JPanel abonneButtonPanel = new JPanel();
+        JButton deleteAbonneButton = new JButton("Supprimer Abonné");
+        abonneButtonPanel.add(deleteAbonneButton);
+        abonnePanel.add(abonneButtonPanel, BorderLayout.SOUTH);
 
         // Panneau des prêts
         JPanel pretPanel = new JPanel(new BorderLayout());
@@ -86,6 +91,12 @@ public class BibliothequeApp extends JFrame {
 
         livrePanel.add(livreSearchPanel, BorderLayout.NORTH);
         livrePanel.add(livreScrollPane, BorderLayout.CENTER);
+
+        JPanel livreButtonPanel = new JPanel();
+        JButton deleteLivreButton = new JButton("Supprimer Livre");
+        livreButtonPanel.add(deleteLivreButton);
+        livrePanel.add(livreButtonPanel, BorderLayout.SOUTH);
+
 
         // Ajouter les panneaux dans la fenêtre principale
         JPanel leftPanel = new JPanel(new BorderLayout());
@@ -142,8 +153,54 @@ public class BibliothequeApp extends JFrame {
                 populateLivreTable(filteredLivres);
             }
         });
+
+        deleteAbonneButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = abonneTable.getSelectedRow();
+                if (selectedRow != -1) {
+                    String idAbonne = (String) abonneTable.getValueAt(selectedRow, 3);
+                    //boite de dialogue
+                    int confirmation = JOptionPane.showConfirmDialog(null,
+                            "Êtes-vous sûr de vouloir supprimer cet abonné ?",
+                            "Confirmation de suppression",
+                            JOptionPane.YES_NO_OPTION);
+
+                    if (confirmation == JOptionPane.YES_OPTION) {
+                        Bibliotheque.removeAbonne(idAbonne);  // Supprimer l'abonné
+                        populateAbonneTable(Bibliotheque.getAbonnes()); // Rafraîchir le tableau
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Veuillez sélectionner un abonné à supprimer.");
+                }
+            }
+
+        });
+
+        deleteLivreButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = livreTable.getSelectedRow();
+                if (selectedRow != -1) {
+                    String idLivre = (String) livreTable.getValueAt(selectedRow, 0);
+                    // Boîte de dialogue de confirmation
+                    int confirmation = JOptionPane.showConfirmDialog(null,
+                            "Êtes-vous sûr de vouloir supprimer ce livre ?",
+                            "Confirmation de suppression",
+                            JOptionPane.YES_NO_OPTION);
+
+                    if (confirmation == JOptionPane.YES_OPTION) {
+                        Bibliotheque.removeLivre(idLivre);  // Supprimer le livre
+                        populateLivreTable(Bibliotheque.getLivres()); // Rafraîchir le tableau
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Veuillez sélectionner un livre à supprimer.");
+                }
+            }
+
+        });
     }
-//
+
     private void populateAbonneTable(List<Abonne> abonnes) {
         String[] columnNames = {"Nom", "Email","Telephone", "ID"};
         String[][] data = new String[abonnes.size()][4];
