@@ -115,7 +115,7 @@ public class BibliothequeApp extends JFrame {
         add(mainPanel);
 
 
-        // Remplir les tableaux au démarrage
+        // Remplir les tableaux au démarr
         populateAbonneTable(Bibliotheque.getAbonnes());
         populatePretTable(Bibliotheque.getPrets());
         populateLivreTable(Bibliotheque.getLivres());

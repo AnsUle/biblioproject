@@ -12,8 +12,15 @@ public class Bibliotheque {
     private static Map<String, String> prets = new HashMap<>() {
     }; // Clé = id_livre, Valeur = id_abonne
 
+    public static void removeAbonne(String idAbonne) {
+        abonnes.removeIf(abonne -> abonne.getIdAbonne().equals(idAbonne));
+    }
     public static List<Abonne> getAbonnes() {
         return abonnes;
+    }
+
+    public static void removeLivre(String idLivre) {
+        livres.removeIf(livre -> livre.getId().equals(idLivre));
     }
 
     public static List<Livre> getLivres() {
